@@ -20,10 +20,20 @@ public class CustomNetworkPlayer : NetworkBehaviour
     
     private static readonly int _baseColorID = Shader.PropertyToID("_BaseColor");
 
+    #region Server
+
     [Server]
     public void SetDisplayName(string displayName)
     {
         _displayName = displayName;
+    }
+    
+    [Command]
+    public void CmdSetDisplayName(string displayName)
+    {
+        RpcLogNewDisplayName(displayName);
+        
+        SetDisplayName(displayName);
     }
     
     [Server]
@@ -38,6 +48,22 @@ public class CustomNetworkPlayer : NetworkBehaviour
         SetColor(new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
     }
 
+    #endregion
+
+    #region Client
+
+    [ContextMenu("Set My Name")]
+    private void SetMyName()
+    {
+        CmdSetDisplayName("My new name");
+    }
+
+    [ClientRpc]
+    public void RpcLogNewDisplayName(string displayName)
+    {
+        Debug.Log("Rpc SetDisplayName: " + displayName);
+    }
+    
     [Client]
     private void OnDisplayNameChanged(string oldDisplayName, string newDisplayName)
     {
@@ -49,4 +75,6 @@ public class CustomNetworkPlayer : NetworkBehaviour
     {
         _playerMeshRenderer.material.SetColor(_baseColorID, newColor); 
     }
+    
+    #endregion
 }
