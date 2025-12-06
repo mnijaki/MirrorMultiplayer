@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3779085573779792088}
   - component: {fileID: 1663293451694062410}
+  - component: {fileID: 1912961310801117836}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -161,3 +162,18 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
+--- !u!114 &1912961310801117836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266594844693967799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883fb9bc2ec38df4fa07afe93caed319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomNetworkPlayer
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
